@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         jsonPlaceHolderApi=retrofit.create(JsonPlaceHolderApi.class);
 
-        //getPosts();
+        getPosts();
 
-        getComments();
+//        getComments();
     }
 
     private void getComments() {
-        Call<List<Comment>> call=jsonPlaceHolderApi.getComments();
+        Call<List<Comment>> call=jsonPlaceHolderApi.getComments(3);
         call.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPosts() {
-        Call<List<Post>> call=jsonPlaceHolderApi.getPosts();
+        Call<List<Post>> call=jsonPlaceHolderApi.getPosts(4);
 
         call.enqueue(new Callback<List<Post>>() {
             @Override
