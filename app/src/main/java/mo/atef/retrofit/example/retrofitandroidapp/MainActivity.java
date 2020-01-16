@@ -32,13 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         jsonPlaceHolderApi=retrofit.create(JsonPlaceHolderApi.class);
 
-        getPosts();
+//        getPosts();
 
-//        getComments();
+        getComments();
     }
 
     private void getComments() {
-        Call<List<Comment>> call=jsonPlaceHolderApi.getComments(3);
+//        Call<List<Comment>> call=jsonPlaceHolderApi.getComments(3);
+        Call<List<Comment>> call=jsonPlaceHolderApi.getComments("posts/3/comments");
         call.enqueue(new Callback<List<Comment>>() {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         parameters.put("userId","1");
         parameters.put("_sort","id");
         parameters.put("_order","desc");
-
+//        Call<List<Post>> call=jsonPlaceHolderApi.getPosts(4,"id","desc");
 //        Call<List<Post>> call=jsonPlaceHolderApi.getPosts(new Integer[]{2,3,6},"id","desc");
         Call<List<Post>> call=jsonPlaceHolderApi.getPosts(parameters);
 
