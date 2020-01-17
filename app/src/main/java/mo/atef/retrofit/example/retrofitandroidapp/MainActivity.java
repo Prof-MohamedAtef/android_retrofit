@@ -36,7 +36,41 @@ public class MainActivity extends AppCompatActivity {
 
 //        getComments();
 
-        createPost();
+//        createPost();
+        updatePost();
+    }
+
+    private void updatePost() {
+        Post post= new Post(12,null,"New Text");
+        Call<Post>call=jsonPlaceHolderApi.putPost(5,post);
+
+        call.enqueue(new Callback<Post>() {
+            @Override
+            public void onResponse(Call<Post> call, Response<Post> response) {
+                if (!response.isSuccessful()){
+                    textViewResult.setText("code: "+response.code());
+                    return;
+                }
+
+                Post postResponse=response.body();
+                String content="";
+                content+= "code: "+response.code()+"\n";
+                content+="ID: "+postResponse.getId()+"\n";
+                content+="user ID: "+postResponse.getUserId()+"\n";
+                content+="Title: "+postResponse.getTitle()+"\n";
+                content+="Text: "+postResponse.getText()+"\n";
+
+                textViewResult.append(content );
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Post> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
     }
 
     private void createPost() {
