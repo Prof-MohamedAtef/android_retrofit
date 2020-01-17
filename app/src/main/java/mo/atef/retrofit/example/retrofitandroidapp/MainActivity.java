@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         textViewResult=(TextView) findViewById(R.id.text_view_result);
 
-//        Gson gson=new GsonBuilder().serializeNulls().create();
+        Gson gson=new GsonBuilder().serializeNulls().create();
 
         HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
 
