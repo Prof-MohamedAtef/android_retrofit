@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createPost() {
-        Post post=new Post(23,"New Title", "New Text");
+//        Post post=new Post(23,"New Title", "New Text");
 
-        Call<Post> call=jsonPlaceHolderApi.createPost(post);
+        Call<Post> call=jsonPlaceHolderApi.createPost(23,"New Title","New Text");
 
         call.enqueue(new Callback<Post>() {
             @Override
